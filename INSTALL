@@ -1,0 +1,26 @@
+INSTALLATION INSTRUCTIONS FOR THE h5r R PACKAGE
+
+Currently, this package works and has been tested with hdf5-1.8.4 on
+Mac OSX and Linux. The package will most likely work on most POSIX
+systems where R works. Windows support should be forthcoming and
+anyone who has experience there and would like to help please contact
+me: jbullard@pacificbiosciences.com. 
+
+To install, a working hdf5 installation must exist. This can be
+downloaded at: http://www.hdfgroup.org/downloads/index.html#hdf5
+
+If the hdf5 libraries and header files are installed in standard
+places (/usr, /usr/local) then the configure script should pick them
+up and have no problem. If you have not installed hdf5 in a standard
+place, but instead installed it in HDF5_HOME then you can install the
+R package in the following way:
+
+R CMD INSTALL --configure-args="--with-hdf5=$HDF5_HOME" h5r
+
+If you install to a non-standard location like this, then you must set
+your LD_LIBRARY_PATH environment variable to contain the directory:
+$HDF5_HOME/libs, otherwise, at run-time, there will be no means to
+find the hdf5.so. 
+
+Please contact jbullard@pacificbiosciences.com if you have any
+questions.

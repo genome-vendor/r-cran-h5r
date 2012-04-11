@@ -1,0 +1,67 @@
+##
+## This configure script was copied from configure.in from the
+## hdf5 R package. Minor changes have been made.
+## 
+AC_INIT(DESCRIPTION)
+AC_PROG_CC
+
+AC_ARG_WITH(zlib,
+[  --with-zlib=DIR         Use zlib installed in DIR]) 
+
+if test -n "$with_zlib"; then
+  ZLIBLDFLAGS=-L${with_zlib}/lib
+  ZLIBCPPFLAGS=-I${with_zlib}/include
+fi
+
+AC_ARG_WITH(hdf5,
+[  --with-hdf5=DIR         Use HDF5 installed in DIR]) 
+AC_ARG_WITH(hdf5_lib, 
+[  --with-hdf5-lib=DIR     Use DIR to find hdf5 libraries])
+AC_ARG_WITH(hdf5_inc, 
+[  --with-hdf5-include=DIR Use DIR to find hdf5 header files])
+
+if test -n "$with_hdf5"; then
+  HDF5LDFLAGS=-L${with_hdf5}/lib
+  HDF5CPPFLAGS=-I${with_hdf5}/include
+fi
+
+if test -n "$with_hdf5_lib"; then
+  HDF5LDFLAGS=-L${with_hdf5_lib}
+fi
+
+if test -n "$with_hdf5_include"; then
+  HDF5CPPFLAGS=-I${with_hdf5_include}
+fi
+
+LIBS=-lm
+CPPFLAGS="$ZLIBCPPFLAGS $HDF5CPPFLAGS $CPPFLAGS"
+LDFLAGS="$HDF5LDFLAGS $ZLIBLDFLAGS $LDFLAGS"
+
+AC_SEARCH_LIBS(inflate, z, have_zlib=yes, have_zlib=no)
+AC_SEARCH_LIBS(H5open, hdf5, have_hdf5=yes, have_hdf5=no)
+
+if test $have_zlib = no; then
+  AC_MSG_ERROR(Can't find zlib)
+fi
+
+if test "$have_hdf5" = yes; then
+  AC_MSG_CHECKING(for sufficiently new HDF5)
+  AC_TRY_LINK([#include <hdf5.h>],
+    [ H5T_pers_t convtype = H5T_PERS_SOFT;
+      H5Tclose ((hid_t) 0);],
+      have_hdf5=yes,
+      have_hdf5=no)
+   AC_MSG_RESULT($have_hdf5)
+fi
+
+if test $have_hdf5 = no; then
+  AC_MSG_ERROR(Can't find HDF5)
+fi
+
+AC_SUBST(ZLIBCPPFLAGS)
+AC_SUBST(ZLIBLDFLAGS)
+AC_SUBST(HDF5CPPFLAGS)
+AC_SUBST(HDF5LDFLAGS)
+
+AC_OUTPUT(src/Makevars)
+

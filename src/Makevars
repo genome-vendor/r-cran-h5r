@@ -1,0 +1,5 @@
+SHLIB = hdf5.so
+OBJS = hdf5.o
+
+PKG_CPPFLAGS =  
+PKG_LIBS =   -lhdf5 -lz -lm
