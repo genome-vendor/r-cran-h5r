@@ -1,0 +1,12 @@
+Source: r-cran-h5r 
+Section: gnu-r
+Priority: optional
+Maintainer: The Genome Insitute <gmt@genome.wustl.edu> 
+Build-Depends: r-base-dev, xvfb, xauth, xfonts-base, r-base-core, debhelper (>> 4.1.0), cdbs
+Standards-Version: 3.9.1
+
+Package: r-cran-h5r
+Architecture: all
+Depends: r-base-core
+Description: The Genome Institute re-packaging of GNU R package r-cran-h5r.
+Maintainer: The Genome Insitute <gmt@genome.wustl.edu> 

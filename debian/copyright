@@ -1,0 +1,18 @@
+This Debian package of the GNU R package proto was generated
+automatically using cran2deb by Gabor Grothendieck
+<ggrothendieck@gmail.com>.
+
+The original GNU R package is Copyright (C) 2011 Louis Kates, Thomas
+Petzoldt and possibly others.
+
+The original GNU R package is maintained by Gabor Grothendieck
+<ggrothendieck@gmail.com> and was obtained from:
+
+http://cran.r-project.org/src/contrib
+
+The GNU R package DESCRIPTION offers a Copyright licenses under the
+terms of the license: GPL-2 .  On a Debian GNU/Linux system, common
+licenses are included in the directory /usr/share/common-licenses/.
+
+The DESCRIPTION file for the original GNU R package can be found in
+/usr/lib/R/site-library/r-cran-proto/DESCRIPTION
